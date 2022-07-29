@@ -298,8 +298,8 @@
                                                     <button type="button"
                                                         class="btn btn-secondary rounded-0 shadow-none border-0 bg-transparent text-primary"
                                                         data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="button" class="btn btn-secondary"
-                                                        onclick="billingAddress();" data-bs-dismiss="modal">OK</button>
+                                                    <button type="button" id="bilBut" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">OK</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -310,7 +310,7 @@
                                     <span
                                         class="input-group-text rounded-0 shadow-none border-0 bg-transparent border-bottom text-secondary"
                                         id="addon-wrapping"><i class="fa-solid fa-location-dot"></i></span>
-                                    <input type="text"
+                                    <input id="inputDef" type="text"
                                         class="form-control rounded-0 shadow-none border-0 border-bottom bg-transparent"
                                         placeholder="Same as billing address" aria-label="Phone"
                                         aria-describedby="addon-wrapping" data-bs-toggle="modal"
@@ -332,47 +332,47 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <p class="mb-0">First Name</p>
-                                                            <input type="text"
+                                                            <input id="fDef" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3">
                                                             <p class="mb-0">last name</p>
-                                                            <input type="text"
+                                                            <input id="lDef" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3">
                                                             <p class="mb-0">Company</p>
-                                                            <input type="text"
+                                                            <input id="cDef" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3">
                                                             <p class="mb-0">Phone</p>
-                                                            <input type="text"
+                                                            <input id="phoneDef" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3">
                                                         </div>
                                                         <div class="col">
                                                             <p class="mb-0">Address line 1</p>
-                                                            <input type="text"
+                                                            <input id="addDef1" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3"
                                                                 placeholder="Enter street name">
                                                             <p class="mb-0">Address line 2</p>
-                                                            <input type="text"
+                                                            <input id="addDef2" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3"
                                                                 placeholder="Address line 2(e.g..apartment,suite,unit,or,bulding).">
                                                             <p class="mb-0">City/Town</p>
-                                                            <input type="text"
+                                                            <input id="cityDef" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3"
                                                                 placeholder="city,district,suburb,town,or village.">
                                                             <div class="d-flex justify-content-between mb-4">
                                                                 <div class="col">
                                                                     <p class="mb-0">State/Region</p>
-                                                                    <input type="text"
+                                                                    <input id="stateDef" type="text"
                                                                         class="form-control border-bottom rounded-0 shadow-none"
                                                                         placeholder="State,county,province,or region">
                                                                 </div>
                                                                 <div class="col mx-4">
                                                                     <p class="mb-0">Zip/Postal Code</p>
-                                                                    <input type="text"
+                                                                    <input id="zipDef" type="text"
                                                                         class="form-control border-bottom rounded-0 shadow-none"
                                                                         placeholder="Zip or postal code.">
                                                                 </div>
                                                             </div>
                                                             <p class="mb-0">Country</p>
-                                                            <input type="text"
+                                                            <input id="countryDef" type="text"
                                                                 class="form-control border-bottom rounded-0 shadow-none mb-3">
                                                         </div>
                                                     </div>
@@ -380,8 +380,8 @@
                                                 <div class="d-flex justify-content-end">
                                                     <button type="button"
                                                         class="btn btn-secondary rounded-0 shadow-none border-0 bg-transparent text-primary"
-                                                        data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="button" class="btn btn-secondary"
+                                                        da-ta-bs-dismiss="modal">Cancel</button>
+                                                    <button id="defBut" type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">OK</button>
                                                 </div>
                                             </div>
@@ -476,9 +476,9 @@
         </div>
     </div>
     <select id="select" class="form-select" aria-label="Default select example" data-live-search="true">
-        <option selected>Open this select menu</option>
+            
     </select>
-
+    <div id="demo"></div>
     <script>
         function deneme4() {
             document.getElementById('cafer').innerHTML = "1 butona tıkladın";
@@ -490,10 +490,10 @@
         function border(tiklanan_id) {
             document.getElementById(tiklanan_id).style.borderColor = 'red';
         }
-        let name;
+        let name = "";
         let surName = "";
-        let fulName;
-        let CName;
+        let fulName = "";
+        let CName = "";
 
         const deneme = function (e) {
             document.getElementById('email').innerHTML = "d";
@@ -502,15 +502,7 @@
         const element = document.getElementById("card");
         element.addEventListener("mouseover", myFunction);
         function myFunction() {
-            if (name == "") {
-                name = " ";
-            }
-            if (surName == "") {
-                surName = " ";
-            }
-            if (CName == "") {
-                CName = " ";
-            }
+
 
             const ad = function (e) {
                 name = e.target.value;
@@ -545,7 +537,7 @@
                 displayName.value = fulName + " " + CName;
 
             })
-            console.log(names);
+
             document.getElementById('select').innerHTML =
                 "<option selected>" + fulName + "</option>" +
                 "<option value='2'>" + surName + "," + name + "</option>" +
@@ -559,10 +551,62 @@
             lName.addEventListener('input', soyad);
             cName.addEventListener('input', cAd);
         }
+        //billing adres
+        let bilFname = document.getElementById("bilFname");
+        let bilLname = document.getElementById("bilLname");
+        let bilCompany = document.getElementById("bilCompany");
+        let bilphone = document.getElementById("bilphone");
+        let bilAdd1 = document.getElementById("bilAdd1");
+        let bilAdd2 = document.getElementById("bilAdd2");
+        let bilCity = document.getElementById("bilCity");
+        let bilState = document.getElementById("bilState");
+        let bilZip = document.getElementById("bilZip");
+        let bilCountry = document.getElementById("bilCountry");;
 
 
 
 
+        bilBut.addEventListener("click", () => {
+            billingAddress.value = bilFname.value +
+                bilLname.value +
+                bilCompany.value +
+                bilphone.value +
+                bilAdd1.value +
+                bilAdd2.value +
+                bilCity.value +
+                bilState.value +
+                bilZip.value +
+                bilCountry.value;
+        });
+
+
+        //deffault adres
+        let fDef = document.getElementById("fDef");
+        let lDef = document.getElementById("lDef");
+        let cDef = document.getElementById("cDef");
+        let phoneDef = document.getElementById("phoneDef");
+        let addDef1 = document.getElementById("addDef1");
+        let addDef2 = document.getElementById("addDef2");
+        let cityDef = document.getElementById("cityDef");
+        let stateDef = document.getElementById("stateDef");
+        let zipDef = document.getElementById("zipDef");
+        let countryDef = document.getElementById("countryDef");;
+
+
+
+
+        defBut.addEventListener("click", () => {
+            inputDef.value = fDef.value +
+            lDef.value +
+            cDef.value +
+            phoneDef.value +
+            addDef1.value +
+            addDef2.value +
+            cityDef.value +
+            stateDef.value +
+            zipDef.value +
+            countryDef.value;
+        });
 
     </script>
 
